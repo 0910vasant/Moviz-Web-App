@@ -38,7 +38,7 @@
         
         <div class="center">
             <main class="form-signin w-100 m-auto">
-            <form>
+            <form action="resetPassword" method="post" >
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Old</label>
                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
