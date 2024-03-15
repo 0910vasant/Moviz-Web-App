@@ -26,28 +26,32 @@ public class QueryToSave {
 
     
     public void SignUp(user e){
-        int status=0;  
-        try{
+        int status=0; 
+        QueryToSave forCheck = new QueryToSave();
+        if(forCheck.getUserName(e) == true){
+            System.out.println("Username already occupaied use another");
+        }else{
+            try{
+                
+                Connection con=QueryToSave.getConnection();   
             
-            Connection con=QueryToSave.getConnection();   
-        
-            //Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users?characterEncoding=utf8","root","root");
-            PreparedStatement ps= con.prepareStatement("insert into userdetails(name,email, username, password) values (?,?,?,?)");
-            ps.setString(1, e.getName());
-            ps.setString(2,e.getEmail());
-            ps.setString(3,e.getUsername());
-            ps.setString(4,e.getPassword());
-            status=ps.executeUpdate();  
-            
-            System.out.println(e.getName());
-            System.out.println(e.getEmail());
-            System.out.println(e.getUsername());
-            System.out.println(e.getPassword());
-            
-            System.out.println("Data inserted successfully");
-            
-        }catch(Exception a){System.out.println(a);}
-        
+                //Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users?characterEncoding=utf8","root","root");
+                PreparedStatement ps= con.prepareStatement("insert into userdetails(name,email, username, password) values (?,?,?,?)");
+                ps.setString(1, e.getName());
+                ps.setString(2,e.getEmail());
+                ps.setString(3,e.getUsername());
+                ps.setString(4,e.getPassword());
+                status=ps.executeUpdate();  
+                
+                System.out.println(e.getName());
+                System.out.println(e.getEmail());
+                System.out.println(e.getUsername());
+                System.out.println(e.getPassword());
+                
+                System.out.println("Data inserted successfully");
+                
+            }catch(Exception a){System.out.println(a);}
+        }
         
     }
     
